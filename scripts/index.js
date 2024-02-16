@@ -21,6 +21,12 @@ function cathThePress(event) {
         const currentLife =getTextValueById('current-life')
         const newLife = currentLife-1;
         setTextValueById('current-life', newLife);
+        if(newLife === 0) {
+            console.log(currentAlphabet);
+            removeBackgroundColor(currentAlphabet);
+
+            gameOver();
+        }
     }
 }
 
@@ -36,6 +42,18 @@ function startTheGame() {
 }
 function play() {
     hideElementById('home');
+    hideElementById('score');
     showElementByID('playground');
+
+    setTextValueById('current-life', 5);
+    setTextValueById('current-score', 0);
     startTheGame();
+}
+function gameOver() 
+{
+    hideElementById('playground');
+    showElementByID('score');
+
+    const lastScore = getTextValueById('current-score');
+    setTextValueById('final-score', lastScore);
 }
